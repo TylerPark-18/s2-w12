@@ -1,10 +1,12 @@
+
+
 public class Parking {
   private int curbLength=5;//so it fits this number of cars if parked perfectly
 
   public Parking(){
     int numCars=park(curbLength);
     System.out.println(numCars);
-    simulation(100);
+    simulation(100000 );
   }
   
   //this counts the number of cars that will fit in the
@@ -12,6 +14,11 @@ public class Parking {
   //YOU -- WHAT IS THE BASE CASE? Recursive Case? 
   //HINT it is similar to the double recursive call we did in class
   public int park(double space){
+     if(space < 1) return 0;
+     double ranodm = Math.random()*(space-1);
+     return park(space-ranodm-1) + park(ranodm)+1;
+     
+    
      
     
 
@@ -26,5 +33,7 @@ public class Parking {
     }
     System.out.println("Average Number of Cars: " + totalCars*1.0/times);
   }
-
+public static void main(String[] args) {
+  new Parking();
+}
 }
